@@ -55,3 +55,13 @@ select state, count(*) from addressBook_table group by state;
 select * from addressBook_table 
 	 where city = 'SF'
 	 order by firstName, lastName;
+     
+# UC 9
+alter table addressBook_table 	
+	 add addressBookName char(100) after lastName,
+	 add addressBookType char(100) after addressBookName;
+     
+update addressBook_table set addressBookType = 'Friends'
+	where city = 'LA' or city = 'SF';
+update addressBook_table set addressBookType = 'Work'
+	where city = 'Mumbai';

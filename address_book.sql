@@ -65,3 +65,6 @@ update addressBook_table set addressBookType = 'Friends'
 	where city = 'LA' or city = 'SF';
 update addressBook_table set addressBookType = 'Work'
 	where city = 'Mumbai';
+    
+# UC 10
+select addressBookType, count(*) from addressBook_table group by addressBookType;

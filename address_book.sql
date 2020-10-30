@@ -50,3 +50,8 @@ select * from addressBook_table where state = 'MH';
 # UC 7
 select city, count(*) from addressBook_table group by city;
 select state, count(*) from addressBook_table group by state;
+
+#UC 8
+select * from addressBook_table 
+	 where city = 'SF'
+	 order by firstName, lastName;

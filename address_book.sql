@@ -66,5 +66,35 @@ update addressBook_table set addressBookType = 'Friends'
 update addressBook_table set addressBookType = 'Work'
 	where city = 'Mumbai';
     
+alter table addressBook_table drop column addressBookName,
+	drop column addressBookType;
+
+alter table addressBook_table drop primary key,
+	 add ID int not null auto_increment first, 
+	 add primary key (ID);
+create table addressBookType_table
+(
+bookID int not null auto_increment,
+ID int not null,
+addressBookName varchar(100) not null,
+addressBookType varchar(100) not null,
+primary key (bookID),
+foreign key (ID) references addressBook_table (ID)
+);
+describe addressbook_table;
+describe addressBookType_table;
+insert into addressbookType_table (ID, addressBookName, addressBookType) values
+(1, 'addressBook1', 'Family'),
+(2, 'addressBook1', 'Family'),
+(3, 'addressBook1', 'Work'),
+(4, 'addressBook2', 'Work'),
+(5, 'addressBook2', 'Friends'),
+(6, 'addressBook2', 'Friends');
+    
 # UC 10
-select addressBookType, count(*) from addressBook_table group by addressBookType;
+select addressBookType, count(*) from addressBookType_table group by addressBookType;
+
+# UC 11
+insert into addressbookType_table (ID, addressBookName, addressBookType) values
+(1, 'addressBook1', 'Friends'),
+(5, 'addressBook2', 'Family');

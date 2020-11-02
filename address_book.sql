@@ -98,3 +98,30 @@ select addressBookType, count(*) from addressBookType_table group by addressBook
 insert into addressbookType_table (ID, addressBookName, addressBookType) values
 (1, 'addressBook1', 'Friends'),
 (5, 'addressBook2', 'Family');
+
+# UC 13
+create table Contact(
+	contact_id numeric(20) not null primary key,
+    book_id numeric(20) not null,
+    firstName varchar(50) not null,
+    lastName varchar(50) not null,
+    Address varchar(150) not null,
+    PhoneNumber int unsigned not null,
+    Email varchar(50) not null,
+    foreign key(book_id) references address_book_type(book_id)
+    );
+    
+create table address(
+	book_id numeric(20) not null primary key,
+	city varchar(50) not null,
+	state varchar(50) not null,
+	zip numeric(6) not null,
+	contact_id numeric(20) not null,
+	foreign key(contact_id) references Contact(contact_id)
+ );
+ 
+create table address_book_type(
+	book_id numeric(20) not null primary key,
+    Book_Name varchar(50) not null,
+    Type varchar(50) not null
+    );
